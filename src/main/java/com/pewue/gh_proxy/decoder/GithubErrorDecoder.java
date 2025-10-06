@@ -14,9 +14,9 @@ public class GithubErrorDecoder implements ErrorDecoder {
             case 404:
                 return new RepositoryNotFoundException("Repository not found");
             case 500:
-                return new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR);
+                return new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Github unexpected error");
             default:
-                return new Exception("Github unexpected error");
+                return new Exception("Unexpected error");
         }
     }
 }
