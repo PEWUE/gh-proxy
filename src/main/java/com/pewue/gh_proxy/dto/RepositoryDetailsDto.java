@@ -1,6 +1,6 @@
 package com.pewue.gh_proxy.dto;
 
-public record RepoDetailsDto(
+public record RepositoryDetailsDto(
         String fullName,
         String description,
         String cloneUrl,

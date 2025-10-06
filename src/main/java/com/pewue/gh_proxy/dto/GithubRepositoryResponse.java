@@ -6,7 +6,7 @@ import lombok.Getter;
 
 @Builder
 @Getter
-public class GithubRepoResponse {
+public class GithubRepositoryResponse {
     @JsonProperty("full_name")
     private String fullName;
     private String description;
