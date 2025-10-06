@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @RequestMapping("/repositories")
 public class GithubRepositoryController {
-    private final GithubRepositoryService githubRepoService;
+    private final GithubRepositoryService githubRepositoryService;
 
     @GetMapping("/{owner}/{repo}")
     public RepositoryDetailsDto getRepositoryDetails(@PathVariable String owner, @PathVariable String repo) {
-        return githubRepoService.get(owner, repo);
+        return githubRepositoryService.get(owner, repo);
     }
 }

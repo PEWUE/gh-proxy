@@ -18,14 +18,14 @@ import static org.mockito.Mockito.when;
 
 public class GithubRepositoryServiceTest {
     GithubClient githubClient;
-    GithubRepositoryMapper repoDetailsMapper;
+    GithubRepositoryMapper githubRepositoryMapper;
     GithubRepositoryService githubRepositoryService;
 
     @BeforeEach
     void setup() {
         this.githubClient = mock(GithubClient.class);
-        this.repoDetailsMapper = Mappers.getMapper(GithubRepositoryMapper.class);
-        this.githubRepositoryService = new GithubRepositoryService(githubClient, repoDetailsMapper);
+        this.githubRepositoryMapper = Mappers.getMapper(GithubRepositoryMapper.class);
+        this.githubRepositoryService = new GithubRepositoryService(githubClient, githubRepositoryMapper);
     }
 
     @Test
