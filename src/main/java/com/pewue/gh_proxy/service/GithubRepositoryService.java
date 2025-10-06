@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class GithubRepositoryService {
-    private final GithubClient gitHubClient;
+    private final GithubClient githubClient;
     private final GithubRepositoryMapper repoDetailsMapper;
 
     public RepositoryDetailsDto get(String owner, String repo) {
-        return repoDetailsMapper.toDto(gitHubClient.getGithubRepo(owner, repo));
+        return repoDetailsMapper.toDto(githubClient.getGithubRepo(owner, repo));
     }
 }
