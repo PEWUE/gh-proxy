@@ -1,8 +1,10 @@
 package com.pewue.gh_proxy.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Getter;
 
+@Builder
 @Getter
 public class GithubRepoResponse {
     @JsonProperty("full_name")
