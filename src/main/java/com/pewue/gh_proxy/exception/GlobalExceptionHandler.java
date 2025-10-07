@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
                 .timestamp(LocalDateTime.now())
                 .status(ex.getStatus().value())
                 .error(ex.getStatus().getReasonPhrase())
-                .error(ex.getMessage())
+                .message(ex.getMessage())
                 .path(request.getRequestURI())
                 .build();
 
