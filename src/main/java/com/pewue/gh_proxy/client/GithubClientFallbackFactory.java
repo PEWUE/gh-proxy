@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.openfeign.FallbackFactory;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @Component
 public class GithubClientFallbackFactory implements FallbackFactory<GithubClient> {
@@ -17,7 +19,7 @@ public class GithubClientFallbackFactory implements FallbackFactory<GithubClient
                     .description("This is fallback")
                     .cloneUrl("fallbackUrl")
                     .stars(0)
-                    .createdAt("1995-11-14T21:37:00")
+                    .createdAt(LocalDateTime.of(1999,12,12,10,10))
                     .build();
         };
     }

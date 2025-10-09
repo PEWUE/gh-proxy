@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Getter
 public class GithubRepositoryResponse {
@@ -15,5 +17,5 @@ public class GithubRepositoryResponse {
     @JsonProperty("stargazers_count")
     private int stars;
     @JsonProperty("created_at")
-    private String createdAt;
+    private LocalDateTime createdAt;
 }
