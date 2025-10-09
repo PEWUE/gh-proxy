@@ -5,11 +5,15 @@ import com.pewue.gh_proxy.dto.GithubRepositoryResponse;
 import com.pewue.gh_proxy.dto.RepositoryDetailsDto;
 import com.pewue.gh_proxy.exception.RepositoryNotFoundException;
 import com.pewue.gh_proxy.mapper.GithubRepositoryMapper;
+import com.pewue.gh_proxy.model.GHRepository;
+import com.pewue.gh_proxy.repository.GithubRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpServerErrorException;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -20,12 +24,15 @@ public class GithubRepositoryServiceTest {
     GithubClient githubClient;
     GithubRepositoryMapper githubRepositoryMapper;
     GithubRepositoryService githubRepositoryService;
+    GithubRepository githubRepository;
+
 
     @BeforeEach
     void setup() {
         this.githubClient = mock(GithubClient.class);
         this.githubRepositoryMapper = Mappers.getMapper(GithubRepositoryMapper.class);
-        this.githubRepositoryService = new GithubRepositoryService(githubClient, githubRepositoryMapper);
+        this.githubRepository = mock(GithubRepository.class);
+        this.githubRepositoryService = new GithubRepositoryService(githubClient, githubRepositoryMapper, githubRepository);
     }
 
     @Test
@@ -35,19 +42,19 @@ public class GithubRepositoryServiceTest {
                 .description("Repository description")
                 .cloneUrl("https://github.com/testOwner/test-repo-name.git")
                 .stars(155)
-                .createdAt("2025-08-01T19:50:31Z")
+                .createdAt(LocalDateTime.of(2025,8,1,19,50))
                 .build();
 
         when(githubClient.getGithubRepo(anyString(), anyString())).thenReturn(response);
 
-        RepositoryDetailsDto result = githubRepositoryService.get("owner", "repoName");
+        GHRepository result = githubRepositoryService.get("owner", "repoName");
 
         assertAll(
-                () -> assertEquals("testOwner/test-repo-name", result.fullName()),
-                () -> assertEquals("Repository description", result.description()),
-                () -> assertEquals("https://github.com/testOwner/test-repo-name.git", result.cloneUrl()),
-                () -> assertEquals(155, result.stars()),
-                () -> assertEquals("2025-08-01T19:50:31Z", result.createdAt())
+                () -> assertEquals("testOwner/test-repo-name", result.getFullName()),
+                () -> assertEquals("Repository description", result.getDescription()),
+                () -> assertEquals("https://github.com/testOwner/test-repo-name.git", result.getCloneUrl()),
+                () -> assertEquals(155, result.getStars()),
+                () -> assertEquals(LocalDateTime.of(2025,8,1,19,50), result.getCreatedAt())
         );
     }
 

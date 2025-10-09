@@ -2,7 +2,6 @@ package com.pewue.gh_proxy.service;
 
 import com.pewue.gh_proxy.client.GithubClient;
 import com.pewue.gh_proxy.dto.GithubRepositoryResponse;
-import com.pewue.gh_proxy.dto.RepositoryDetailsDto;
 import com.pewue.gh_proxy.exception.RepositoryNotFoundException;
 import com.pewue.gh_proxy.mapper.GithubRepositoryMapper;
 import com.pewue.gh_proxy.model.GHRepository;
