@@ -15,10 +15,6 @@ public class GithubErrorDecoder implements ErrorDecoder {
     public Exception decode(String s, Response response) {
         switch (response.status()) {
             case 404:
-                return new RepositoryNotFoundException("Repository not found");
-            case 500:
-                return new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Github unexpected error");
-            case 503:
                 FeignException exception = feign.FeignException.errorStatus(s, response);
                 return new RetryableException(
                         response.status(),
@@ -28,6 +24,19 @@ public class GithubErrorDecoder implements ErrorDecoder {
                         50L,
                         response.request()
                 );
+//                return new RepositoryNotFoundException("Repository not found");
+            case 500:
+                return new HttpServerErrorException(HttpStatus.INTERNAL_SERVER_ERROR, "Github unexpected error");
+//            case 503:
+//                FeignException exception = feign.FeignException.errorStatus(s, response);
+//                return new RetryableException(
+//                        response.status(),
+//                        exception.getMessage(),
+//                        response.request().httpMethod(),
+//                        exception,
+//                        50L,
+//                        response.request()
+//                );
             default:
                 return defaultErrorDecoder.decode(s, response);
         }
