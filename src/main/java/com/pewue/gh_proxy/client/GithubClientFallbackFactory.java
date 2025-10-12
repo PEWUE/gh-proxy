@@ -19,7 +19,7 @@ public class GithubClientFallbackFactory implements FallbackFactory<GithubClient
                     .description("This is fallback")
                     .cloneUrl("fallbackUrl")
                     .stars(0)
-                    .createdAt(LocalDateTime.of(1999,12,12,10,10))
+                    .createdAt(LocalDateTime.of(1999, 12, 12, 10, 10))
                     .build();
         };
     }
