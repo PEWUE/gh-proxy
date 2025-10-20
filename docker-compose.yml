@@ -1,0 +1,16 @@
+version: '3'
+services:
+  app:
+    image: 'gh-proxy:0.0.1'
+    container_name: 'gh-proxy-app'
+    depends_on:
+      - mongo-db
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongo-db:27017/gh_proxy_db
+    ports:
+      - "8080:8080"
+  mongo-db:
+    image: mongo
+    container_name: mongo-db
+    ports:
+      - "27017:27017"
