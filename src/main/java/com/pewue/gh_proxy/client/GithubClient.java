@@ -6,7 +6,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-@FeignClient(name = "github", url = "https://api.github.com", configuration = GithubClientConfiguration.class, fallbackFactory = GithubClientFallbackFactory.class)
+@FeignClient(name = "githubClient", configuration = GithubClientConfiguration.class, fallbackFactory = GithubClientFallbackFactory.class)
 public interface GithubClient {
 
     @GetMapping("/repos/{owner}/{repo}")
